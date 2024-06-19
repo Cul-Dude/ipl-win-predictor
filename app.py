@@ -7,7 +7,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background: url("https://img.freepik.com/premium-photo/night-cricket-stadium-illustration-football-night-stadium-background_94574-17008.jpg");
+        background: url("https://www.fabhotels.com/blog/assets/2023/08/600X400-9.jpg")
         background-size: cover;
     }
     .prediction {
