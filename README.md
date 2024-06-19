@@ -44,10 +44,3 @@ We welcome contributions to improve the IPL Win Predictor. If you have ideas or 
 Thanks to the creators of the datasets used in this project. The same dataset can be found in this [kaggle notebook](https://www.kaggle.com/datasets/ramjidoolla/ipl-data-set)
 Special thanks to the Streamlit team for their amazing visualization library.
 
-
-# Contact
-For any questions or feedback, please feel free to reach out:
-
-Email:  adichand.04@gmail.com
-LinkedIn: [Aditya Chand](www.linkedin.com/in/aditya-chand-25998824a)
-
