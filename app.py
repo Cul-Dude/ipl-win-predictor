@@ -7,7 +7,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background: url("https://static.toiimg.com/thumb/msid-108372614,width-400,resizemode-4/108372614.jpg");
+        background: url("https://static.theprint.in/wp-content/uploads/2023/11/IMG_1019-min-scaled-e1700672378753.jpeg");
         background-size: cover;
     }
     .prediction {
