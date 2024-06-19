@@ -13,12 +13,12 @@ The IPL Win Predictor is a machine learning project that predicts the winning pr
 Live App
 Check out the live app here: [IPL Win Predictor](https://ipl-win-predictor-aditya.streamlit.app/).
 
-# How to use the App
+# How to Use the App
 1) **Select Teams**: Choose the chasing team and defending teams from the dropdowns.
 2) **Enter The Equation**: Provide current match details like the target to chase, score of chasing team, overs bowled by bowling team, and wickets of batting team fallen.
 3) **Predict:** Click the "Predict" button to get the live winning probabilities.
 
-# Datasets used
+# Datasets Used
 1) **MATCHES.csv**
 2) **DELIVERIES.csv**
    Details about these datasets and how I proceeded further in the project is given in *ipl-prediction.ipynb* 
@@ -36,7 +36,7 @@ The project uses a machine learning pipeline built with scikit-learn, which incl
 The model has been evaluated using various metrics and has shown promising results in predicting match outcomes. Accuracy of 80% is achieved. Detailed performance metrics and validation results can be found in the jupyter notebook attached.
 
 # Contributions
-We welcome contributions to improve the IPL Win Predictor. If you have ideas or find bugs, feel free to open an issue or submit a pull request.
+I welcome contributions to improve the IPL Win Predictor. If you have ideas or find bugs, feel free to open an issue or submit a pull request.
 
 
 
