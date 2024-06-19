@@ -278,7 +278,7 @@ if st.button('Predict'):
         st.error("Please select both batting and bowling teams.")
     else:
         # Validate overs input
-        if  overs<0 or overs>20.0 or (overs*10) % 10 > 5:
+        if  overs<0.0 or overs>20.0 or (overs*10) % 10 >= 6 :
             st.error("Please enter a valid value for Overs Bowled .")
         else:
             # Calculation of runs_required
