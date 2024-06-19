@@ -25,31 +25,59 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-teams = ['Sunrisers Hyderabad',
-         'Mumbai Indians',
-         'Royal Challengers Bangalore',
-         'Kolkata Knight Riders',
-         'Delhi Capitals',
-         'Punjab Kings',
-         'Chennai Super Kings',
-         'Rajasthan Royals'
-         ]
+teams = [
+    'Sunrisers Hyderabad',
+    'Mumbai Indians',
+    'Royal Challengers Bangalore',
+    'Kolkata Knight Riders',
+    'Delhi Capitals',
+    'Punjab Kings',
+    'Chennai Super Kings',
+    'Rajasthan Royals'
+]
 
-cities = ['Chennai', 'Bangalore', 'Delhi', 'Durban', 'Chandigarh',
-          'Ahmedabad', 'Jaipur', 'Visakhapatnam', 'Hyderabad', 'Mumbai',
-          'Kolkata', 'Cape Town', 'Pune', 'Nagpur', 'Kimberley',
-          'Johannesburg', 'Mohali', 'Sharjah', 'Port Elizabeth', 'Centurion',
-          'Abu Dhabi', 'Bengaluru', 'Bloemfontein', 'Raipur', 'Ranchi',
-          'Dharamsala', 'Indore', 'Cuttack', 'East London']
+cities = [
+    'Chennai', 'Bangalore', 'Delhi', 'Durban', 'Chandigarh',
+    'Ahmedabad', 'Jaipur', 'Visakhapatnam', 'Hyderabad', 'Mumbai',
+    'Kolkata', 'Cape Town', 'Pune', 'Nagpur', 'Kimberley',
+    'Johannesburg', 'Mohali', 'Sharjah', 'Port Elizabeth', 'Centurion',
+    'Abu Dhabi', 'Bengaluru', 'Bloemfontein', 'Raipur', 'Ranchi',
+    'Dharamsala', 'Indore', 'Cuttack', 'East London'
+]
 
 pipe = pickle.load(open('pipe.pkl', 'rb'))
 
 st.title('IPL Win Predictor')
 
-# Sidebar for team selection
+# Sidebar for team selection with dynamic filtering
 st.sidebar.header('Select Teams')
-batting_team = st.sidebar.selectbox('Select Batting team', sorted(teams))
-bowling_team = st.sidebar.selectbox('Select Bowling team', sorted(teams))
+
+# Initially set batting_team and bowling_team to None
+batting_team = None
+bowling_team = None
+
+# Team selection logic
+if 'batting_team' not in st.session_state:
+    st.session_state.batting_team = 'Select Team'
+if 'bowling_team' not in st.session_state:
+    st.session_state.bowling_team = 'Select Team'
+
+if st.sidebar.selectbox('First Select', ['Batting Team', 'Bowling Team']) == 'Batting Team':
+    batting_team = st.sidebar.selectbox('Select Batting team', ['Select Team'] + sorted(teams))
+    if batting_team != 'Select Team':
+        st.session_state.batting_team = batting_team
+        bowling_team_options = [team for team in sorted(teams) if team != batting_team]
+        bowling_team = st.sidebar.selectbox('Select Bowling team', ['Select Team'] + bowling_team_options)
+        if bowling_team != 'Select Team':
+            st.session_state.bowling_team = bowling_team
+else:
+    bowling_team = st.sidebar.selectbox('Select Bowling team', ['Select Team'] + sorted(teams))
+    if bowling_team != 'Select Team':
+        st.session_state.bowling_team = bowling_team
+        batting_team_options = [team for team in sorted(teams) if team != bowling_team]
+        batting_team = st.sidebar.selectbox('Select Batting team', ['Select Team'] + batting_team_options)
+        if batting_team != 'Select Team':
+            st.session_state.batting_team = batting_team
 
 # Main Page Inputs
 st.header('Match Details')
@@ -66,66 +94,69 @@ with col5:
     wickets = st.number_input('Wickets Fallen')
 
 if st.button('Predict'):
-    # Calculation of runs_required
-    runs_left = Target - score
-
-    # Calculation of balls_left (10.5 = 10 overs + 5 balls)
-    balls_left = 120
-    if 1 <= (overs * 10) % 10 <= 5:
-        balls_left -= ((overs * 10) % 10) + ((overs * 10) // 10) * 6
+    if st.session_state.batting_team == 'Select Team' or st.session_state.bowling_team == 'Select Team':
+        st.error("Please select both batting and bowling teams.")
     else:
-        balls_left = (120 - overs * 6)
+        # Calculation of runs_required
+        runs_left = Target - score
 
-    # Calculation of wickets_left
-    wickets_left = 10 - wickets
+        # Calculation of balls_left (10.5 = 10 overs + 5 balls)
+        balls_left = 120
+        if 1 <= (overs * 10) % 10 <= 5:
+            balls_left -= ((overs * 10) % 10) + ((overs * 10) // 10) * 6
+        else:
+            balls_left = (120 - overs * 6)
 
-    # Current run rate calculation
-    if overs > 0:
-        crr = score / overs
-    else:
-        crr = 0
+        # Calculation of wickets_left
+        wickets_left = 10 - wickets
 
-    # Required run rate calculation
-    if balls_left > 0:
-        overs_left = balls_left / 6
-    else:
-        overs_left = 0
+        # Current run rate calculation
+        if overs > 0:
+            crr = score / overs
+        else:
+            crr = 0
 
-    if overs_left > 0:
-        rrr = runs_left / overs_left
-    else:
-        rrr = runs_left
+        # Required run rate calculation
+        if balls_left > 0:
+            overs_left = balls_left / 6
+        else:
+            overs_left = 0
 
-    input_df = pd.DataFrame({
-        'batting_team': [batting_team],
-        'bowling_team': [bowling_team],
-        'city': [selected_venue],
-        'runs_required': [runs_left],
-        'balls_left': [balls_left],
-        'wickets_left': [wickets_left],
-        'crr': [crr],
-        'rrr': [rrr],
-    })
+        if overs_left > 0:
+            rrr = runs_left / overs_left
+        else:
+            rrr = runs_left
 
-    # Display result
-    try:
-        result = pipe.predict_proba(input_df)
-    except Exception as e:
-        st.error(f"Error during prediction: {e}")
+        input_df = pd.DataFrame({
+            'batting_team': [st.session_state.batting_team],
+            'bowling_team': [st.session_state.bowling_team],
+            'city': [selected_venue],
+            'runs_required': [runs_left],
+            'balls_left': [balls_left],
+            'wickets_left': [wickets_left],
+            'crr': [crr],
+            'rrr': [rrr],
+        })
 
-    bowling_team_win_percent = result[0][0] * 100
-    batting_team_win_percent = result[0][1] * 100
+        # Display result
+        try:
+            result = pipe.predict_proba(input_df)
+        except Exception as e:
+            st.error(f"Error during prediction: {e}")
 
-    st.header('Win Prediction:')
-    col6, col7 = st.columns(2)
+        bowling_team_win_percent = result[0][0] * 100
+        batting_team_win_percent = result[0][1] * 100
 
-    with col6:
-        st.markdown(
-            f'<div class="prediction">{batting_team}<br>{round(batting_team_win_percent, 2)}%</div>',
-            unsafe_allow_html=True
-        )
-    with col7:
-        st.markdown(
-            f'<div class="prediction">{bowling_team}<br>{round(bowling_team_win_percent, 2)}%</div>',
-            unsafe_allow_html=True
-        )
+        st.header('Win Prediction:')
+        col6, col7 = st.columns(2)
+
+        with col6:
+            st.markdown(
+                f'<div class="prediction">{st.session_state.batting_team}<br>{round(batting_team_win_percent, 2)}%</div>',
+                unsafe_allow_html=True
+            )
+        with col7:
+            st.markdown(
+                f'<div class="prediction">{st.session_state.bowling_team}<br>{round(bowling_team_win_percent, 2)}%</div>',
+                unsafe_allow_html=True
+            )
