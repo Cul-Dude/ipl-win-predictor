@@ -7,7 +7,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background: url("https://e1.pxfuel.com/desktop-wallpaper/739/253/desktop-wallpaper-cricket-stadium-night-cricket-field.jpg");
+        background: url("https://static.toiimg.com/thumb/msid-108372614,width-400,resizemode-4/108372614.jpg");
         background-size: cover;
     }
     .prediction {
