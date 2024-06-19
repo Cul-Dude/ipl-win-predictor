@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import pandas as pd
 
-# Setting the background image
+# Applying CSS styling (Like setting the background image, font size and with a elevated look of final prediction) 
 st.markdown(
     """
     <style>
@@ -49,12 +49,20 @@ pipe = pickle.load(open('pipe.pkl', 'rb'))
 
 st.title('IPL Win Predictor')
 
+
 # Sidebar for team selection with dynamic filtering
 st.sidebar.header('Select Teams')
 
 # Initially set batting_team and bowling_team to None
 batting_team = None
 bowling_team = None
+
+
+# I have made an option called  First team
+# If user selects Batting team, means user is going to select baating team first.
+# Thus when the user selects bowling team, then that team isn't shown in the bowling dropdown
+# Same thing happens when user select the bowling team option first
+# In this way, we avoid selecting same team as both batting and bowling team
 
 # Team selection logic
 if 'batting_team' not in st.session_state:
@@ -89,9 +97,15 @@ col3, col4, col5 = st.columns(3)
 with col3:
     score = st.number_input('Runs Scored')
 with col4:
-    overs = st.number_input('Overs Bowled')
+    overs = st.number_input('Overs Bowled', min_value=0.0, max_value=20.0, step=0.1, format="%.1f")
 with col5:
-    wickets = st.number_input('Wickets Fallen')
+    wickets = st.number_input('Wickets Fallen', min_value=0, max_value=10, step=1)
+
+# To ensure that the overs input is rounded to the nearest valid value
+if overs % 1 >= 0.6:
+    overs = round(overs)  # If the decimal part is 0.6 or higher, round up to the next integer
+else:
+    overs = int(overs) + min(overs % 1, 0.5)  # Otherwise, round to the nearest valid 0.5 increment
 
 if st.button('Predict'):
     if st.session_state.batting_team == 'Select Team' or st.session_state.bowling_team == 'Select Team':
