@@ -7,7 +7,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background: url("https://www.fabhotels.com/blog/assets/2023/08/600X400-9.jpg")
+        background: url("https://www.fabhotels.com/blog/assets/2023/08/600X400-9.jpg");
         background-size: cover;
     }
     .prediction {
