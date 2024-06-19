@@ -7,7 +7,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background: url("https://www.fabhotels.com/blog/assets/2023/08/600X400-9.jpg");
+        background: url("https://e1.pxfuel.com/desktop-wallpaper/739/253/desktop-wallpaper-cricket-stadium-night-cricket-field.jpg");
         background-size: cover;
     }
     .prediction {
