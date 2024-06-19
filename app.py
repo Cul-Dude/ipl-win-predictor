@@ -37,12 +37,12 @@ teams = [
 ]
 
 cities = [
-    'Chennai', 'Bangalore', 'Delhi', 'Durban', 'Chandigarh',
-    'Ahmedabad', 'Jaipur', 'Visakhapatnam', 'Hyderabad', 'Mumbai',
-    'Kolkata', 'Cape Town', 'Pune', 'Nagpur', 'Kimberley',
-    'Johannesburg', 'Mohali', 'Sharjah', 'Port Elizabeth', 'Centurion',
-    'Abu Dhabi', 'Bengaluru', 'Bloemfontein', 'Raipur', 'Ranchi',
-    'Dharamsala', 'Indore', 'Cuttack', 'East London'
+    'Kolkata', 'Jaipur', 'Mumbai', 'Chennai', 'Dharamsala', 'Mohali',
+    'Chandigarh', 'Bengaluru', 'Pune', 'Hyderabad', 'Delhi',
+    'Bangalore', 'Ahmedabad', 'Durban', 'Nagpur', 'Ranchi', 'Raipur',
+    'Abu Dhabi', 'Johannesburg', 'Centurion', 'Cuttack',
+    'Visakhapatnam', 'Port Elizabeth', 'Indore', 'Kimberley',
+    'Bloemfontein', 'Sharjah', 'Cape Town', 'East London'
 ]
 
 pipe = pickle.load(open('pipe.pkl', 'rb'))
