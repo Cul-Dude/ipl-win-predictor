@@ -48,6 +48,6 @@ Special thanks to the Streamlit team for their amazing visualization library.
 # Contact
 For any questions or feedback, please feel free to reach out:
 
-Email: [Aditya Chand](mailto:adichand.04@gmail.com)
-LinkedIn: Your LinkedIn
+Email:  adichand.04@gmail.com
+LinkedIn: [Aditya Chand](www.linkedin.com/in/aditya-chand-25998824a)
 
