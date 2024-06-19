@@ -7,7 +7,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background: url("https://us.123rf.com/450wm/rahultiwari3190/rahultiwari31901904/rahultiwari3190190400132/121341358-concept-of-batsman-playing-cricket-championship-line-art-design-vector-illustration.jpg");
+        background: url("https://img.freepik.com/premium-photo/night-cricket-stadium-illustration-football-night-stadium-background_94574-17008.jpg");
         background-size: cover;
     }
     .prediction {
