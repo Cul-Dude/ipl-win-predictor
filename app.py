@@ -95,7 +95,7 @@ Target = st.number_input('Target to Chase')
 col3, col4, col5 = st.columns(3)
 
 with col3:
-    score = st.number_input('Runs Scored')
+    score = st.number_input('Runs Scored', min_value=0, step=1)
 with col4:
     overs = st.number_input('Overs Bowled', min_value=0.0, max_value=20.0, step=0.1, format="%.1f")
 with col5:
