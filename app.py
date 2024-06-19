@@ -186,7 +186,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background: url("https://www.example.com/background.jpg");
+        background: url("https://static.theprint.in/wp-content/uploads/2023/11/IMG_1019-min-scaled-e1700672378753.jpeg");
         background-size: cover;
     }
     .prediction {
