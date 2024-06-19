@@ -90,7 +90,7 @@ else:
 # Main Page Inputs
 st.header('Match Details')
 selected_venue = st.selectbox('Select Stadium', sorted(cities))
-Target = st.number_input('Target to Chase')
+Target = st.number_input('Target to Chase', min_value=0, step=1)
 
 col3, col4, col5 = st.columns(3)
 
