@@ -6,11 +6,12 @@ The IPL Win Predictor is a machine learning project that predicts the winning pr
 # Features
 1) Real-time Prediction: Get win probabilities for both teams based on the current score, overs bowled, and wickets fallen.
 2) User-friendly Interface: A Streamlit web app providing an interactive and easy-to-use interface.
-Comprehensive Data: Utilizes extensive IPL historical data for accurate predictions.
-Demo
+3) Comprehensive Data: Utilizes extensive IPL historical data for accurate predictions.
 
+   
+# Demo
 Live App
-Check out the live app here: IPL Win Predictor
+Check out the live app here: [IPL Win Predictor](https://ipl-win-predictor-aditya.streamlit.app/).
 
 Installation
 Prerequisites
