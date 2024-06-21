@@ -11,6 +11,7 @@ The IPL Win Predictor is a machine learning project that predicts the winning pr
    
 # Demo
 Live App
+
 Check out the live app here: [IPL Win Predictor](https://ipl-win-predictor-aditya.streamlit.app/).
 
 # How to Use the App
